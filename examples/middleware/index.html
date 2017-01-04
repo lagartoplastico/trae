@@ -11,29 +11,24 @@
         width: 100vw;
         min-height: 100vh;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         font-family: Helvetica;
       }
-      pre {
-        border: 1px solid gray;
-        border-radius: 6px;
-        padding: 10px;
-        margin: 10px;
+      .gifs {
+        max-width: 768px;
       }
-      .characters {
-        max-width: 920px;
-      }
-      .grid {
+      .gifs-grid {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .gifs-grid img {
+        margin-bottom: 20px;
       }
     </style>
   </head>
   <body>
-    <div class="characters" id="characters">
-      <h1>Loading . . .</h1>
-    </div>
+    <div class="gifs" id="gifs"><h1>Loading . . .</h1></div>
     <script src="https://unpkg.com/trae" type="text/javascript"></script>
     <script src="index.js" type="text/javascript"></script>
   </body>

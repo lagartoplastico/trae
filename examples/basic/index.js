@@ -1,27 +1,26 @@
 /* eslint-disable */
 const wrapWithPre = text => `<pre>${text}</pre>`
 
-trae.get('http://www.clashapi.xyz/')
+const mapCharacter = character => ({
+  name: character.name,
+  height: character.height,
+  mass: character.mass,
+  hair_color: character.hair_color,
+  skin_color: character.skin_color,
+  eye_color: character.eye_color,
+  birth_year: character.birth_year,
+  gender: character.gender
+})
+
+trae.get('https://swapi.co/api/people/')
   .then(res => {
-    const node = document.getElementById('json')
-    node.innerHTML = wrapWithPre(JSON.stringify(res.data, null, '\t'))
-  });
-
-const params = {
-  q: 'funny cat',
-  api_key: 'dc6zaTOxFJmzC'
-}
-
-const giphyAPI = trae.create({baseUrl: 'http://api.giphy.com/v1'})
-
-const getUrls = resp => {
-
-}
-
-giphyAPI.after()
-
-giphyAPI.get('gifs/search', { params })
-  .then(res => {
-    const node = document.getElementById('text')
-    node.innerHTML = wrapWithPre(JSON.stringify(res.data, null, '\t'))
+    const node = document.getElementById('characters')
+    const characters = res.data.results
+      .map(mapCharacter)
+      .map(character => wrapWithPre(JSON.stringify(character, null, '\t')))
+    node.innerHTML = `
+      <div class="grid">
+        ${characters.join('')}
+      </div>
+    `
   });
