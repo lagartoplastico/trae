@@ -26,6 +26,8 @@
   "scripts": {
     "add": "all-contributors add",
     "contributors": "all-contributors generate",
+    "build:all": "./scripts/build.sh",
+    "build:all:prod": "./scripts/build.sh prod",
     "build": "NODE_ENV=production rollup -c",
     "build:dev": "rollup -c",
     "build:dev:w": "rollup -c -w",
@@ -42,7 +44,8 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "merge": "^1.2.0",
-    "qs": "^6.3.1"
+    "qs": "^6.3.1",
+    "unfetch": "^2.1.0"
   },
   "devDependencies": {
     "all-contributors-cli": "^4.0.0",

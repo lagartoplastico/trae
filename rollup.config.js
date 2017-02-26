@@ -11,18 +11,23 @@ import skipCommentsCustom from './utils/uglify-skip-comments';
 
 const pkg = require('./package.json');
 
-const env    = process.env.NODE_ENV || 'development';
-const isProd = env === 'production';
-const banner = `/**
+const env      = process.env.NODE_ENV || 'development';
+const isProd   = env === 'production';
+const destName = process.env.DEST || 'trae';
+const entry    = `lib/${process.env.ENTRY || 'index.js'}`;
+const dest     = isProd ? `dist/${destName}.min.js` : `dist/${destName}.js`;
+const banner   = `/**
  * Trae, the fetch library!
  *
  * @version: ${pkg.version}
  * @authors: ${pkg.author} | ${pkg.contributors[0]}
  */`;
 
+console.log(`Building trae ${isProd ? 'for production ' : ''}from ${entry}`);
+
 export default {
-  entry     : 'lib/index.js',
-  dest      : isProd ? 'dist/trae.min.js' : 'dist/trae.js',
+  entry,
+  dest,
   format    : 'umd',
   moduleId  : 'trae',
   moduleName: 'trae',
@@ -50,10 +55,11 @@ export default {
       'process.env.NODE_ENV': JSON.stringify(env),
       NODE_ENV              : JSON.stringify(env)
     }),
-    conditional({
-      condition: isProd,
-      plugin   : uglify({ output: { comments: skipCommentsCustom } })
-    }),
+    conditional(
+      isProd, [
+        uglify({ output: { comments: skipCommentsCustom } })
+      ]
+    ),
     visualizer({ filename: './coverage/bundle-statistics.html' }),
     filesize()
   ]
