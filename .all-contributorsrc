@@ -73,6 +73,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "capaj",
+      "name": "Jiri Spac",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1305378?v=3",
+      "profile": "http://about.me/capaj",
+      "contributions": [
+        "code",
+        "review"
+      ]
     }
   ]
 }
