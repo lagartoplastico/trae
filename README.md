@@ -14,6 +14,7 @@ Minimalistic HTTP client for the browser. Based on [Fetch](https://developer.moz
 
 1. [Install](#install)
 1. [Basic Usage](#basic-usage)
+1. [Polyfill](#polyfill)
 1. [Trae API](#trea-api)
   1. [Request methods](#request-methods)
   1. [Config](#config)
@@ -69,6 +70,37 @@ trae.post('https://www.foo.com/api/posts', {
 Check out more examples [here](https://huemul.github.io/trae-examples).
 
 [⬆ back to top](#content)
+
+## Polyfill
+
+`trae` uses the [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API) to handle the HTTP requests. Since it is not yet supported in every browser a [polyfill](https://en.wikipedia.org/wiki/Polyfill) is required to prevent unexpected errors.
+Since use cases may vary, `trae` provides builds using different polyfills and with no polyfill at all.
+
+- **Default** 
+
+The default `trae` build uses [`isomorphic-fetch`](https://github.com/matthew-andrews/isomorphic-fetch). Works on `node` and supports streaming.
+
+```js
+import trae from 'trae'
+```
+
+- **Unfetch**
+
+Uses [`unfetch`](https://github.com/developit/unfetch), a bare minimum fetch polyfill. 
+
+```js
+import trae from 'trae/dist/unfetch'
+```
+
+*NOTE*: `unfetch` does not support streaming.
+
+- **No polyfill**
+
+A build with no polyfill, use it if you are sure `fetch` is defined in the environment you are targeting, i.e. Electron, Chrome or Firefox extensions.
+
+```js
+import trae from 'trae/dist/raw'
+```
 
 ## Trae API
 
