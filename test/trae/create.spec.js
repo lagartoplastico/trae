@@ -1,5 +1,5 @@
 /* global describe it expect */
-import trae from '../../lib';
+import trae from '../../lib/trae';
 
 describe('trae - create', () => {
   it('returns a new instance of Trae with the provided config as defaults', () => {

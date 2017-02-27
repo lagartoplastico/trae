@@ -1,6 +1,6 @@
 /* global describe it expect */
 
-import trae from '../../lib';
+import trae from '../../lib/trae';
 
 describe('trae', () => {
   it('exposed as a singleton instance of Trae class with the default config', () => {

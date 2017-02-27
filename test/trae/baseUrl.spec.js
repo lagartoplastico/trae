@@ -1,6 +1,6 @@
 /* global describe it expect */
 
-import trae from '../../lib';
+import trae from '../../lib/trae';
 
 describe('trae - baseUrl', () => {
   it('sets the baseUrl or returns if no params are passed', () => {

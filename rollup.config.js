@@ -7,15 +7,16 @@ import filesize           from 'rollup-plugin-filesize';
 import resolve            from 'rollup-plugin-node-resolve';
 import commonjs           from 'rollup-plugin-commonjs';
 import visualizer         from 'rollup-plugin-visualizer';
+import chalk              from 'chalk';
 import skipCommentsCustom from './utils/uglify-skip-comments';
 
 const pkg = require('./package.json');
 
 const env      = process.env.NODE_ENV || 'development';
 const isProd   = env === 'production';
-const destName = process.env.DEST || 'trae';
-const entry    = `lib/${process.env.ENTRY || 'index.js'}`;
-const dest     = isProd ? `dist/${destName}.min.js` : `dist/${destName}.js`;
+const entry    = process.env.ENTRY || 'trae';
+// eslint-disable-next-line no-confusing-arrow
+const dest     = e => isProd ? `dist/${e}.min.js` : `dist/${e}.js`;
 const banner   = `/**
  * Trae, the fetch library!
  *
@@ -23,11 +24,13 @@ const banner   = `/**
  * @authors: ${pkg.author} | ${pkg.contributors[0]}
  */`;
 
-console.log(`Building trae ${isProd ? 'for production ' : ''}from ${entry}`);
+console.log(chalk.red(`Building trae ${isProd ? 'for production ' : ''}`));
+console.log(` - ${chalk.bold('Entry')}: ${chalk.green(entry)}.js`);
+console.log(` - ${chalk.bold('Dest')}:  ${dest(chalk.green(entry))}\n`);
 
 export default {
-  entry,
-  dest,
+  entry     : `lib/${entry}.js`,
+  dest      : dest(entry),
   format    : 'umd',
   moduleId  : 'trae',
   moduleName: 'trae',

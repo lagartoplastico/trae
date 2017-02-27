@@ -1,6 +1,6 @@
 /* global describe it expect */
 
-import trae from '../../lib';
+import trae from '../../lib/trae';
 
 describe('trae -> defaults', () => {
   it('returns the current default config when no params are passed', () => {

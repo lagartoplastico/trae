@@ -26,11 +26,11 @@
   "scripts": {
     "add": "all-contributors add",
     "contributors": "all-contributors generate",
-    "build:all": "./scripts/build.sh",
-    "build:all:prod": "./scripts/build.sh prod",
-    "build": "NODE_ENV=production rollup -c",
-    "build:dev": "rollup -c",
-    "build:dev:w": "rollup -c -w",
+    "build": "./scripts/build.sh prod",
+    "build:dev": "./scripts/build.sh",
+    "dev": "./scripts/dev.sh trae",
+    "dev:unf": "./scripts/dev.sh unfetch",
+    "dev:raw": "./scripts/dev.sh raw",
     "build:docs": "npm run build && cp dist/trae.min.js docs/js/trae.min.js",
     "docs": "http-server ./docs -o",
     "test": "npm run eslint && jest --coverage --verbose",
@@ -39,7 +39,10 @@
     "check-bundle": "open coverage/bundle-statistics.html",
     "prepublish": "in-publish && ./scripts/publish.sh || echo 'just installing'",
     "eslint": "eslint . --ext .js",
-    "release": "np"
+    "release": "np",
+    "rollup": "rollup -c",
+    "rollup:prod": "NODE_ENV=production rollup -c",
+    "rollup:watch": "rollup -c -w"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
@@ -54,6 +57,7 @@
     "babel-loader": "^6.3.2",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-es2015-rollup": "^3.0.0",
+    "chalk": "^1.1.3",
     "coveralls": "^2.11.16",
     "eslint": "^3.16.0",
     "eslint-config-airbnb": "^14.1.0",
